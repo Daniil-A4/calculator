@@ -1,12 +1,8 @@
 const culculations = document.querySelector('.culculations')
 const digits = document.querySelector('.digits')
-const plus = document.querySelector('.plus')
-const minus = document.querySelector('.minus')
-const multiply = document.querySelector('.multiply')
 const divide = document.querySelector('.divide')
 const equals = document.querySelector('.equals')
 const ac = document.querySelector('.ac')
-const persentage = document.querySelector('.persentage')
 
 ac.addEventListener('click', function () {
   culculations.value = ''
