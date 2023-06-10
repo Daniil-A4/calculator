@@ -6,8 +6,9 @@ const multiply = document.querySelector('.multiply')
 const divide = document.querySelector('.divide')
 const equals = document.querySelector('.equals')
 const ac = document.querySelector('.ac')
+const persentage = document.querySelector('.persentage')
 
-ac.addEventListener('click', function() {
+ac.addEventListener('click', function () {
   culculations.value = ''
 })
 
@@ -21,42 +22,42 @@ digits.addEventListener('click', function (e) {
   }
 })
 
-plus.addEventListener('click', function() {
-  equals.addEventListener('click', function() {
-    let nums = culculations.value.split('+')
-    const result = nums.reduce((accum, currentValue) => {return accum + +currentValue}, 0)
+equals.addEventListener('click', function () {
 
-    culculations.value = result
-  })
+  if (culculations.value.includes('%')) {
+    if (culculations.value.includes('+')) {
+      const arr = culculations.value.split('+')
+      const number = +arr[0]
+      const percentage = +arr[1].split('%')[0]
+
+      culculations.value = addPercentage(number, percentage)
+    } else if (culculations.value.includes('-')) {
+      const arr = culculations.value.split('-')
+      const number = +arr[0]
+      const percentage = +arr[1].split('%')[0]
+
+      culculations.value = subtractPercentage(number, percentage)
+    }
+  } else {
+    culculations.value = eval(culculations.value)
+  }
 })
 
+function subtractPercentage(number, percentage) {
+  const subtraction = number * (percentage / 100);
+  const result = number - subtraction;
+  return result;
+}
 
-minus.addEventListener('click', function() {
-  equals.addEventListener('click', function() {
-    let nums = culculations.value.split('-')
-    const result = nums.reduce((accum, currentValue) => {return accum - currentValue})
-    
-    culculations.value = result
-  })
-})
+function addPercentage(number, percentage) {
+  const addition = number * (percentage / 100);
+  const result = number + addition;
+  return result;
+}
 
-multiply.addEventListener('click', function() {
-  equals.addEventListener('click', function() {
-    let nums = culculations.value.split('*')
-    const result = nums.reduce((accum, currentValue) => {return accum * currentValue})
-    
-    culculations.value = result
-  })
-})
 
-divide.addEventListener('click', function() {
-  equals.addEventListener('click', function() {
-    let nums = culculations.value.split('/')
-    const result = nums.reduce((accum, currentValue) => {return accum / currentValue})
-    
-    culculations.value = result
-  })
-})
+
+
 
 
 
